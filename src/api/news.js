@@ -146,10 +146,11 @@ export const logApi = {
   /**
    * 获取查询日志
    * @param {object} params - 查询参数
+   * @param {number} params.limit - 记录数量限制
    * @returns {Promise} API响应
    */
   getQueryLogs(params) {
-    return apiClient.get('/api/logs/queries', { params })
+    return apiClient.get('/api/query_log', { params })
   },
 
   /**

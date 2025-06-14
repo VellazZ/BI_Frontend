@@ -25,6 +25,9 @@
           <el-tab-pane label="推荐系统" name="recommend">
             <NewsRecommendation />
           </el-tab-pane>
+          <el-tab-pane label="查询日志" name="querylog">
+            <QueryLog />
+          </el-tab-pane>
         </el-tabs>
       </el-main>
     </el-container>
@@ -39,6 +42,7 @@ import UserInterests from './components/UserInterests.vue'
 import NewsStats from './components/NewsStats.vue'
 import NewsAnalysis from './components/NewsAnalysis.vue'
 import NewsRecommendation from './components/NewsRecommendation.vue'
+import QueryLog from './components/QueryLog.vue'
 
 export default {
   name: 'App',
@@ -48,7 +52,8 @@ export default {
     UserInterests,
     NewsStats,
     NewsAnalysis,
-    NewsRecommendation
+    NewsRecommendation,
+    QueryLog
   },
   setup() {
     const activeTab = ref('lifecycle', 'category', 'UserInterests', 'NewsStats')

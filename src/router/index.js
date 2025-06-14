@@ -5,6 +5,7 @@ import UserInterests from '@/components/UserInterests.vue';
 import NewsStats from '@/components/NewsStats.vue';
 import NewsAnalysis from '@/components/NewsAnalysis.vue';
 import NewsRecommendation from '@/components/NewsRecommendation.vue';
+import QueryLog from '@/components/QueryLog.vue';
 
 const routes = [
   { path: '/' },
@@ -14,7 +15,7 @@ const routes = [
   { path: '/flexible-query', component: NewsStats, name: 'Flexible Query' },
   { path: '/viral-analysis', component: NewsAnalysis, name: 'Viral Analysis' },
   { path: '/recommendations', component: NewsRecommendation, name: 'Recommendations' },
-  { path: '/query-logs', component: { template: '<div>Query Logs (TBD)</div>' }, name: 'Query Logs' },
+  { path: '/query-logs', component: QueryLog, name: 'Query Logs' },
 ];
 
 const router = createRouter({

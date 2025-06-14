@@ -118,6 +118,26 @@ export const newsApi = {
    */
   getRecommendations(params) {
     return apiClient.get('/api/news/recommendations', { params })
+  },
+
+  getFeatureImportance() {
+    return apiClient.get('/api/analysis/feature-importance')
+  },
+
+  getTrendingNews(limit = 20) {
+    return apiClient.get('/api/news/trending', {
+      params: {
+        limit
+      }
+    })
+  },
+
+  getUserRecommendations(userId, limit = 10) {
+    return apiClient.get(`/api/users/${userId}/recommendations`, {
+      params: {
+        limit
+      }
+    })
   }
 }
 

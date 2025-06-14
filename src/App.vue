@@ -19,11 +19,11 @@
           <el-tab-pane label="综合查询" name="query">
             <NewsStats />
           </el-tab-pane>
-          <el-tab-pane label="爆款分析" name="popular" disabled>
-            <div>待实现...</div>
+          <el-tab-pane label="爆款分析" name="popular">
+            <NewsAnalysis />
           </el-tab-pane>
-          <el-tab-pane label="推荐系统" name="recommend" disabled>
-            <div>待实现...</div>
+          <el-tab-pane label="推荐系统" name="recommend">
+            <NewsRecommendation />
           </el-tab-pane>
         </el-tabs>
       </el-main>
@@ -37,6 +37,8 @@ import NewsLifecycle from './components/NewsLifecycle.vue'
 import CategoryStats from './components/CategoryStats.vue'
 import UserInterests from './components/UserInterests.vue'
 import NewsStats from './components/NewsStats.vue'
+import NewsAnalysis from './components/NewsAnalysis.vue'
+import NewsRecommendation from './components/NewsRecommendation.vue'
 
 export default {
   name: 'App',
@@ -44,7 +46,9 @@ export default {
     NewsLifecycle,
     CategoryStats,
     UserInterests,
-    NewsStats
+    NewsStats,
+    NewsAnalysis,
+    NewsRecommendation
   },
   setup() {
     const activeTab = ref('lifecycle', 'category', 'UserInterests', 'NewsStats')

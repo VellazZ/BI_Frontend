@@ -3,6 +3,8 @@ import NewsLifecycle from '@/components/NewsLifecycle.vue';
 import CategoryStats from '@/components/CategoryStats.vue';
 import UserInterests from '@/components/UserInterests.vue';
 import NewsStats from '@/components/NewsStats.vue';
+import NewsAnalysis from '@/components/NewsAnalysis.vue';
+import NewsRecommendation from '@/components/NewsRecommendation.vue';
 
 const routes = [
   { path: '/' },
@@ -10,8 +12,8 @@ const routes = [
   { path: '/category-trends', component: CategoryStats, name: 'Category Trends' },
   { path: '/user-interests', component: UserInterests, name: 'User Interests' },
   { path: '/flexible-query', component: NewsStats, name: 'Flexible Query' },
-  { path: '/viral-analysis', component: { template: '<div>Viral Analysis (TBD)</div>' }, name: 'Viral Analysis' },
-  { path: '/recommendations', component: { template: '<div>Recommendations (TBD)</div>' }, name: 'Recommendations' },
+  { path: '/viral-analysis', component: NewsAnalysis, name: 'Viral Analysis' },
+  { path: '/recommendations', component: NewsRecommendation, name: 'Recommendations' },
   { path: '/query-logs', component: { template: '<div>Query Logs (TBD)</div>' }, name: 'Query Logs' },
 ];
 

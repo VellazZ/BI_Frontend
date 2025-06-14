@@ -1,15 +1,57 @@
+<!-- App.vue -->
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <el-container>
+      <el-header>
+        <h1>新闻数据分析系统</h1>
+      </el-header>
+      <el-main>
+        <el-tabs v-model="activeTab" type="card">
+          <el-tab-pane label="新闻生命周期" name="lifecycle">
+            <NewsLifecycle />
+          </el-tab-pane>
+          <el-tab-pane label="新闻分类统计" name="category">
+            <CategoryStats />
+          </el-tab-pane>
+          <el-tab-pane label="用户兴趣分析" name="interest">
+            <UserInterests />
+          </el-tab-pane>
+          <el-tab-pane label="综合查询" name="query">
+            <NewsStats />
+          </el-tab-pane>
+          <el-tab-pane label="爆款分析" name="popular" disabled>
+            <div>待实现...</div>
+          </el-tab-pane>
+          <el-tab-pane label="推荐系统" name="recommend" disabled>
+            <div>待实现...</div>
+          </el-tab-pane>
+        </el-tabs>
+      </el-main>
+    </el-container>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { ref } from 'vue'
+import NewsLifecycle from './components/NewsLifecycle.vue'
+import CategoryStats from './components/CategoryStats.vue'
+import UserInterests from './components/UserInterests.vue'
+import NewsStats from './components/NewsStats.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    NewsLifecycle,
+    CategoryStats,
+    UserInterests,
+    NewsStats
+  },
+  setup() {
+    const activeTab = ref('lifecycle', 'category', 'UserInterests', 'NewsStats')
+    
+    return {
+      activeTab
+    }
   }
 }
 </script>
@@ -19,8 +61,21 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.el-header {
+  background-color: #545c64;
+  color: #fff;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  line-height: 60px;
+}
+
+.el-header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.el-main {
+  padding: 20px;
 }
 </style>

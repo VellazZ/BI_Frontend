@@ -209,7 +209,7 @@
     DataZoomComponent
   } from 'echarts/components'
   import VChart from 'vue-echarts'
-  // import { newsApi } from '../api/news'
+  import { newsApi } from '../api/news'
   
   use([
     CanvasRenderer,
@@ -223,58 +223,58 @@
   ])
 
   // Mock data for simulation
-const mockFeatureData = [
-  { feature: "breaking", importance: 0.12 },
-  { feature: "category_politics", importance: 0.10 },
-  { feature: "sentiment_score", importance: 0.09 },
-  { feature: "content_len", importance: 0.08 },
-  { feature: "exclusive", importance: 0.07 },
-  { feature: "category_technology", importance: 0.06 },
-  { feature: "trending", importance: 0.05 },
-  { feature: "source_cnn", importance: 0.04 },
-  { feature: "category_entertainment", importance: 0.04 },
-  { feature: "urgent", importance: 0.03 },
-  { feature: "category_sports", importance: 0.03 },
-  { feature: "scandal", importance: 0.03 },
-  { feature: "source_bbc", importance: 0.02 },
-  { feature: "category_health", importance: 0.02 },
-  { feature: "viral", importance: 0.02 },
-  { feature: "category_business", importance: 0.01 },
-  { feature: "source_nytimes", importance: 0.01 },
-  { feature: "controversial", importance: 0.01 },
-  { feature: "category_science", importance: 0.01 },
-  { feature: "celebrity", importance: 0.01 }
-];
+// const mockFeatureData = [
+//   { feature: "breaking", importance: 0.12 },
+//   { feature: "category_politics", importance: 0.10 },
+//   { feature: "sentiment_score", importance: 0.09 },
+//   { feature: "content_len", importance: 0.08 },
+//   { feature: "exclusive", importance: 0.07 },
+//   { feature: "category_technology", importance: 0.06 },
+//   { feature: "trending", importance: 0.05 },
+//   { feature: "source_cnn", importance: 0.04 },
+//   { feature: "category_entertainment", importance: 0.04 },
+//   { feature: "urgent", importance: 0.03 },
+//   { feature: "category_sports", importance: 0.03 },
+//   { feature: "scandal", importance: 0.03 },
+//   { feature: "source_bbc", importance: 0.02 },
+//   { feature: "category_health", importance: 0.02 },
+//   { feature: "viral", importance: 0.02 },
+//   { feature: "category_business", importance: 0.01 },
+//   { feature: "source_nytimes", importance: 0.01 },
+//   { feature: "controversial", importance: 0.01 },
+//   { feature: "category_science", importance: 0.01 },
+//   { feature: "celebrity", importance: 0.01 }
+// ];
 
-const mockTrendingData = [
-  {
-    news_id: 1001,
-    headline: "Global Markets Surge After Unexpected Policy Shift",
-    category: "Business",
-    topic: "Economy",
-    hotness_score: 0.95,
-    reason: "High social media engagement and breaking news",
-    prediction_timestamp: "2025-06-15 04:30:00"
-  },
-  {
-    news_id: 1002,
-    headline: "Tech Giant Unveils AI-Powered Smartphone",
-    category: "Technology",
-    topic: "Innovation",
-    hotness_score: 0.92,
-    reason: "Widespread shares on X and tech blogs",
-    prediction_timestamp: "2025-06-15 04:15:00"
-  },
-  {
-    news_id: 1003,
-    headline: "Celebrity Scandal Rocks Entertainment Industry",
-    category: "Entertainment",
-    topic: "Celebrity News",
-    hotness_score: 0.90,
-    reason: "Viral spread on social platforms",
-    prediction_timestamp: "2025-06-15 04:00:00"
-  }
-];
+// const mockTrendingData = [
+//   {
+//     news_id: 1001,
+//     headline: "Global Markets Surge After Unexpected Policy Shift",
+//     category: "Business",
+//     topic: "Economy",
+//     hotness_score: 0.95,
+//     reason: "High social media engagement and breaking news",
+//     prediction_timestamp: "2025-06-15 04:30:00"
+//   },
+//   {
+//     news_id: 1002,
+//     headline: "Tech Giant Unveils AI-Powered Smartphone",
+//     category: "Technology",
+//     topic: "Innovation",
+//     hotness_score: 0.92,
+//     reason: "Widespread shares on X and tech blogs",
+//     prediction_timestamp: "2025-06-15 04:15:00"
+//   },
+//   {
+//     news_id: 1003,
+//     headline: "Celebrity Scandal Rocks Entertainment Industry",
+//     category: "Entertainment",
+//     topic: "Celebrity News",
+//     hotness_score: 0.90,
+//     reason: "Viral spread on social platforms",
+//     prediction_timestamp: "2025-06-15 04:00:00"
+//   }
+// ];
   
   export default {
     name: 'NewsAnalysis',
@@ -421,106 +421,106 @@ const mockTrendingData = [
       }
       
       // 加载特征重要性分析
-//      const loadFeatureImportance = async () => {
-//        featureLoading.value = true
-//        featureQueried.value = true
+     const loadFeatureImportance = async () => {
+       featureLoading.value = true
+       featureQueried.value = true
         
-//        try {
-//          const response = await newsApi.getFeatureImportance()
-//          
-//          if (response.status === 'success') {
-//            featureData.value = response.data || []
-//            if (featureData.value.length === 0) {
-//              ElMessage.info('暂无特征分析数据')
-//            } else {
-//              ElMessage.success(`成功加载 ${featureData.value.length} 个特征`)
-//            }
-//          } else {
-//            ElMessage.error(response.message || '获取特征重要性失败')
-//          }
-//        } catch (error) {
-//          console.error('特征重要性分析错误:', error)
-//          ElMessage.error('获取特征重要性失败，请稍后重试')
-//        } finally {
-//          featureLoading.value = false
-//        }
-//      }
-      // Load feature importance (mock)
-    const loadFeatureImportance = async () => {
-      featureLoading.value = true;
-      featureQueried.value = true;
+       try {
+         const response = await newsApi.getFeatureImportance()
+         
+         if (response.status === 'success') {
+           featureData.value = response.data || []
+           if (featureData.value.length === 0) {
+             ElMessage.info('暂无特征分析数据')
+           } else {
+             ElMessage.success(`成功加载 ${featureData.value.length} 个特征`)
+           }
+         } else {
+           ElMessage.error(response.message || '获取特征重要性失败')
+         }
+       } catch (error) {
+         console.error('特征重要性分析错误:', error)
+         ElMessage.error('获取特征重要性失败，请稍后重试')
+       } finally {
+         featureLoading.value = false
+       }
+     }
+    //   // Load feature importance (mock)
+    // const loadFeatureImportance = async () => {
+    //   featureLoading.value = true;
+    //   featureQueried.value = true;
 
-      try {
-        // Simulate API response
-        const response = { status: 'success', data: mockFeatureData };
-        if (response.status === 'success') {
-          featureData.value = response.data || [];
-          if (featureData.value.length === 0) {
-            ElMessage.info('暂无特征分析数据');
-          } else {
-            ElMessage.success(`成功加载 ${featureData.value.length} 个特征`);
-          }
-        } else {
-          ElMessage.error(response.message || '获取特征重要性失败');
-        }
-      } catch (error) {
-        console.error('特征重要性分析错误:', error);
-        ElMessage.error('获取特征重要性失败，请稍后重试');
-      } finally {
-        featureLoading.value = false;
-      }
-    };
+    //   try {
+    //     // Simulate API response
+    //     const response = { status: 'success', data: mockFeatureData };
+    //     if (response.status === 'success') {
+    //       featureData.value = response.data || [];
+    //       if (featureData.value.length === 0) {
+    //         ElMessage.info('暂无特征分析数据');
+    //       } else {
+    //         ElMessage.success(`成功加载 ${featureData.value.length} 个特征`);
+    //       }
+    //     } else {
+    //       ElMessage.error(response.message || '获取特征重要性失败');
+    //     }
+    //   } catch (error) {
+    //     console.error('特征重要性分析错误:', error);
+    //     ElMessage.error('获取特征重要性失败，请稍后重试');
+    //   } finally {
+    //     featureLoading.value = false;
+    //   }
+    // };
       
       // 加载热点新闻
-//      const loadTrendingNews = async () => {
-//        trendingLoading.value = true
-//        trendingQueried.value = true
+     const loadTrendingNews = async () => {
+       trendingLoading.value = true
+       trendingQueried.value = true
         
-//        try {
-//          const response = await newsApi.getTrendingNews(trendingLimit.value)
+       try {
+         const response = await newsApi.getTrendingNews(trendingLimit.value)
           
-//          if (response.status === 'success') {
-//            trendingData.value = response.data || []
-//            if (trendingData.value.length === 0) {
-//              ElMessage.info('暂无热点新闻数据')
-//            } else {
-//              ElMessage.success(`成功加载 ${trendingData.value.length} 条热点新闻`)
-//            }
-//          } else {
-//            ElMessage.error(response.message || '获取热点新闻失败')
-//          }
-//        } catch (error) {
-//          console.error('热点新闻获取错误:', error)
-//          ElMessage.error('获取热点新闻失败，请稍后重试')
-//        } finally {
-//          trendingLoading.value = false
-//        }
-//      }
+         if (response.status === 'success') {
+           trendingData.value = response.data || []
+           if (trendingData.value.length === 0) {
+             ElMessage.info('暂无热点新闻数据')
+           } else {
+             ElMessage.success(`成功加载 ${trendingData.value.length} 条热点新闻`)
+           }
+         } else {
+           ElMessage.error(response.message || '获取热点新闻失败')
+         }
+       } catch (error) {
+         console.error('热点新闻获取错误:', error)
+         ElMessage.error('获取热点新闻失败，请稍后重试')
+       } finally {
+         trendingLoading.value = false
+       }
+     }
       // Load trending news (mock)
-    const loadTrendingNews = async () => {
-      trendingLoading.value = true;
-      trendingQueried.value = true;
+    // const loadTrendingNews = async () => {
+    //   trendingLoading.value = true;
+    //   trendingQueried.value = true;
 
-      try {
-        // Simulate API response
-        const response = { status: 'success', data: mockTrendingData };
-        if (response.status === 'success') {
-          trendingData.value = response.data || [];
-          if (trendingData.value.length === 0) {
-            ElMessage.info('暂无热点新闻数据');
-          } else {
-            ElMessage.success(`成功加载 ${trendingData.value.length} 条热点新闻`);
-          }
-        } else {
-          ElMessage.error(response.message || '获取热点新闻失败');
-        }
-      } catch (error) {
-        console.error('热点新闻获取错误:', error);
-        ElMessage.error('获取热点新闻失败，请稍后重试');
-      } finally {
-        trendingLoading.value = false;
-      }
-    };
+    //   try {
+    //     // Simulate API response
+    //     const response = { status: 'success', data: mockTrendingData };
+    //     if (response.status === 'success') {
+    //       trendingData.value = response.data || [];
+    //       if (trendingData.value.length === 0) {
+    //         ElMessage.info('暂无热点新闻数据');
+    //       } else {
+    //         ElMessage.success(`成功加载 ${trendingData.value.length} 条热点新闻`);
+    //       }
+    //     } else {
+    //       ElMessage.error(response.message || '获取热点新闻失败');
+    //     }
+    //   } catch (error) {
+    //     console.error('热点新闻获取错误:', error);
+    //     ElMessage.error('获取热点新闻失败，请稍后重试');
+    //   } finally {
+    //     trendingLoading.value = false;
+    //   }
+    // };
       
       // 组件挂载时自动加载数据
       onMounted(() => {

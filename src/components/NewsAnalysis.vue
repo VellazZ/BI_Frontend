@@ -361,11 +361,18 @@
         ]
       }))
       
-      // 热度分布图表配置
+      // 修改热度分布图表配置
       const hotnessDistributionOption = computed(() => ({
         tooltip: {
           trigger: 'axis',
           formatter: '{b}<br/>热度得分: {c}'
+        },
+        grid: {
+          left: '10%',
+          right: '10%',
+          top: '15%',
+          bottom: '15%',
+          containLabel: true
         },
         xAxis: {
           type: 'category',
@@ -374,16 +381,31 @@
             interval: 0,
             rotate: 45,
             fontSize: 10
-          }
+          },
+          // 确保 X 轴占满宽度
+          boundaryGap: true
         },
         yAxis: {
           type: 'value',
-          name: '热度得分'
+          name: '热度得分',
+          // 设置 Y 轴的最小值和最大值，避免数据过于集中
+          min: function(value) {
+            return Math.max(0, value.min - 0.1);
+          },
+          max: function(value) {
+            return Math.min(1, value.max + 0.1);
+          }
         },
         series: [{
           data: trendingData.value.map(item => Number(item.hotness_score)),
           type: 'line',
           smooth: true,
+          // 增加线条宽度
+          lineStyle: {
+            width: 3
+          },
+          // 增加数据点大小
+          symbolSize: 8,
           itemStyle: {
             color: '#409EFF'
           },
@@ -579,6 +601,7 @@
   .chart-wrapper {
     margin-bottom: 20px;
     text-align: center;
+    width: 100%;
   }
   
   .chart-wrapper h4 {

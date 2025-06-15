@@ -130,7 +130,7 @@
     LegendComponent
   } from 'echarts/components'
   import VChart from 'vue-echarts'
-  // import { newsApi } from '../api/news'
+  import { newsApi } from '../api/news'
   
   use([
     CanvasRenderer,
@@ -140,68 +140,68 @@
     LegendComponent
   ])
   
-  const mockRecommendationsData = [
-  {
-    news_id: 2001,
-    headline: "New Policy Sparks Debate in Congress",
-    category: "Politics",
-    topic: "Legislation"
-  },
-  {
-    news_id: 2002,
-    headline: "Breakthrough in Quantum Computing Announced",
-    category: "Finance",
-    topic: "Innovation"
-  },
-  {
-    news_id: 2003,
-    headline: "Team USA Wins Gold in Olympics",
-    category: "Sports",
-    topic: "Olympics"
-  },
-  {
-    news_id: 2004,
-    headline: "Election Results: What’s Next for the Economy?",
-    category: "Politics",
-    topic: "Economy"
-  },
-  {
-    news_id: 2005,
-    headline: "AI Ethics Guidelines Released by Tech Council",
-    category: "Technology",
-    topic: "Ethics"
-  },
-  {
-    news_id: 2006,
-    headline: "Football Star Signs Record-Breaking Contract",
-    category: "Sports",
-    topic: "Contracts"
-  },
-  {
-    news_id: 3001,
-    headline: "Global Climate Summit Reaches Agreement",
-    category: "Environment",
-    topic: "Climate Change"
-  },
-  {
-    news_id: 3002,
-    headline: "New Space Mission Targets Mars",
-    category: "Science",
-    topic: "Space Exploration"
-  },
-  {
-    news_id: 3003,
-    headline: "Stock Market Trends for 2025",
-    category: "Business",
-    topic: "Finance"
-  },
-  {
-    news_id: 3004,
-    headline: "Health Tech Startup Raises $100M",
-    category: "Technology",
-    topic: "Startups"
-  }
-];
+//   const mockRecommendationsData = [
+//   {
+//     news_id: 2001,
+//     headline: "New Policy Sparks Debate in Congress",
+//     category: "Politics",
+//     topic: "Legislation"
+//   },
+//   {
+//     news_id: 2002,
+//     headline: "Breakthrough in Quantum Computing Announced",
+//     category: "Finance",
+//     topic: "Innovation"
+//   },
+//   {
+//     news_id: 2003,
+//     headline: "Team USA Wins Gold in Olympics",
+//     category: "Sports",
+//     topic: "Olympics"
+//   },
+//   {
+//     news_id: 2004,
+//     headline: "Election Results: What’s Next for the Economy?",
+//     category: "Politics",
+//     topic: "Economy"
+//   },
+//   {
+//     news_id: 2005,
+//     headline: "AI Ethics Guidelines Released by Tech Council",
+//     category: "Technology",
+//     topic: "Ethics"
+//   },
+//   {
+//     news_id: 2006,
+//     headline: "Football Star Signs Record-Breaking Contract",
+//     category: "Sports",
+//     topic: "Contracts"
+//   },
+//   {
+//     news_id: 3001,
+//     headline: "Global Climate Summit Reaches Agreement",
+//     category: "Environment",
+//     topic: "Climate Change"
+//   },
+//   {
+//     news_id: 3002,
+//     headline: "New Space Mission Targets Mars",
+//     category: "Science",
+//     topic: "Space Exploration"
+//   },
+//   {
+//     news_id: 3003,
+//     headline: "Stock Market Trends for 2025",
+//     category: "Business",
+//     topic: "Finance"
+//   },
+//   {
+//     news_id: 3004,
+//     headline: "Health Tech Startup Raises $100M",
+//     category: "Technology",
+//     topic: "Startups"
+//   }
+// ];
   export default {
     name: 'NewsRecommendation',
     components: {
@@ -229,7 +229,7 @@
       })
       
       const collaborativeCount = computed(() => {
-        return Math.max(0, recommendations.value.length - 7)
+        return Math.max(0, recommendations.value.length - 6)
       })
       
       // 分类图表配置
@@ -274,71 +274,71 @@
       }
       
       // 获取推荐
-//      const getRecommendations = async () => {
-//        if (!queryForm.userId) {
-//          ElMessage.warning('请输入用户ID')
-//          return
-//        }
+     const getRecommendations = async () => {
+       if (!queryForm.userId) {
+         ElMessage.warning('请输入用户ID')
+         return
+       }
         
-//        loading.value = true
-//        hasQueried.value = true
+       loading.value = true
+       hasQueried.value = true
         
-//        try {
-//          const response = await newsApi.getUserRecommendations(queryForm.userId, queryForm.limit)
-//          
-//          if (response.status === 'success') {
-//            recommendations.value = response.data || []
-//            if (recommendations.value.length === 0) {
-//              ElMessage.info('该用户暂无推荐数据')
-//            } else {
-//              ElMessage.success(`成功获取 ${recommendations.value.length} 条推荐新闻`)
-//            }
-//          } else {
-//            ElMessage.error(response.message || '获取推荐失败')
-//          }
-//        } catch (error) {
-//          console.error('获取推荐错误:', error)
-//          ElMessage.error('获取推荐失败，请稍后重试')
-//          recommendations.value = []
-//        } finally {
-//          loading.value = false
-//        }
-//      }
+       try {
+         const response = await newsApi.getUserRecommendations(queryForm.userId, queryForm.limit)
+         
+         if (response.status === 'success') {
+           recommendations.value = response.data || []
+           if (recommendations.value.length === 0) {
+             ElMessage.info('该用户暂无推荐数据')
+           } else {
+             ElMessage.success(`成功获取 ${recommendations.value.length} 条推荐新闻`)
+           }
+         } else {
+           ElMessage.error(response.message || '获取推荐失败')
+         }
+       } catch (error) {
+         console.error('获取推荐错误:', error)
+         ElMessage.error('获取推荐失败，请稍后重试')
+         recommendations.value = []
+       } finally {
+         loading.value = false
+       }
+     }
       // Get recommendations (mock)
-    const getRecommendations = async () => {
-      if (!queryForm.userId) {
-        ElMessage.warning('请输入用户ID');
-        return;
-      }
+    // const getRecommendations = async () => {
+    //   if (!queryForm.userId) {
+    //     ElMessage.warning('请输入用户ID');
+    //     return;
+    //   }
       
-      loading.value = true;
-      hasQueried.value = true;
+    //   loading.value = true;
+    //   hasQueried.value = true;
       
-      try {
-        // Simulate API response
-        const response = {
-          status: 'success',
-          data: mockRecommendationsData.slice(0, queryForm.limit)
-        };
+    //   try {
+    //     // Simulate API response
+    //     const response = {
+    //       status: 'success',
+    //       data: mockRecommendationsData.slice(0, queryForm.limit)
+    //     };
         
-        if (response.status === 'success') {
-          recommendations.value = response.data || [];
-          if (recommendations.value.length === 0) {
-            ElMessage.info('该用户暂无推荐数据');
-          } else {
-            ElMessage.success(`成功获取 ${recommendations.value.length} 条推荐新闻`);
-          }
-        } else {
-          ElMessage.error(response.message || '获取推荐失败');
-        }
-      } catch (error) {
-        console.error('获取推荐错误:', error);
-        ElMessage.error('获取推荐失败，请稍后重试');
-        recommendations.value = [];
-      } finally {
-        loading.value = false;
-      }
-    };
+    //     if (response.status === 'success') {
+    //       recommendations.value = response.data || [];
+    //       if (recommendations.value.length === 0) {
+    //         ElMessage.info('该用户暂无推荐数据');
+    //       } else {
+    //         ElMessage.success(`成功获取 ${recommendations.value.length} 条推荐新闻`);
+    //       }
+    //     } else {
+    //       ElMessage.error(response.message || '获取推荐失败');
+    //     }
+    //   } catch (error) {
+    //     console.error('获取推荐错误:', error);
+    //     ElMessage.error('获取推荐失败，请稍后重试');
+    //     recommendations.value = [];
+    //   } finally {
+    //     loading.value = false;
+    //   }
+    // };
       
       // 重置表单
       const resetForm = () => {
